@@ -50,34 +50,31 @@
     <script src="script.js"></script>
     <script>
     document.getElementById('confirmacion-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const formData = {
-        nombre: document.getElementById('invitado').value,
-        confirmacion: document.getElementById('confirmacion').value
-    };
+  const formData = {
+    data: {
+      Nombre: document.getElementById('invitado').value,
+      Confirmacion: document.getElementById('confirmacion').value,
+      Fecha: new Date().toISOString()
+    }
+  };
 
-    fetch('https://script.google.com/macros/s/AKfycbx3APJGKSsKrdhwceDQ4pBzhkWH4tf5aACNDfq4WsSrewTMiAMSYT3Lk3DS-Gp_g9hD/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData),
-        mode: 'no-cors'
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud: ' + response.statusText);
-        }
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById('response-message').textContent = data;
-    })
-    .catch(error => {
-        console.error('Error:', error); // Muestra el error en la consola
-        document.getElementById('response-message').textContent = 'Ocurrió un error. Inténtalo de nuevo.';
-    });
+  fetch('https://sheetdb.io/api/v1/6eig6j7vw349q', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('response-message').textContent = 'Confirmación recibida. ¡Gracias!';
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    document.getElementById('response-message').textContent = 'Ocurrió un error. Inténtalo de nuevo.';
+  });
 });
     </script>
 </body>
