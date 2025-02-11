@@ -1,0 +1,123 @@
+body {
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.countdown-container {
+    text-align: center;
+    color: #333;
+    padding: 10px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: nowrap; /* Mantiene los recuadros en una sola línea */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+
+.box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px; /* Reduce el padding para un ajuste más compacto */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 60px; /* Ancho ajustado para pantallas pequeñas */
+    font-family: Arial, sans-serif;
+    min-width: 50px; /* Garantiza que el ancho mínimo se mantenga */
+}
+
+.box p {
+    font-size: 1.4em; /* Tamaño de fuente reducido para pantallas pequeñas */
+    margin: 0;
+}
+
+.box span {
+    font-size: 0.7em; /* Tamaño de fuente reducido para pantallas pequeñas */
+    color: #777;
+}
+
+.confirmation-container {
+    text-align: center;
+    margin-top: 30px; /* Espacio entre el conteo y el formulario */
+}
+
+.confirmation-container h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.confirmation-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacio entre los elementos del formulario */
+}
+
+.confirmation-container label {
+    font-size: 1em;
+}
+
+.confirmation-container input,
+.confirmation-container select {
+    padding: 8px;
+    font-size: 1em;
+}
+
+.confirmation-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirmation-container button:hover {
+    background-color: #0056b3;
+}
+
+#response-message {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 600px) {
+    .box {
+        width: 50px; /* Ajusta aún más el ancho para pantallas pequeñas */
+    }
+
+    .box p {
+        font-size: 1.2em; /* Tamaño de fuente reducido */
+    }
+
+    .box span {
+        font-size: 0.6em; /* Tamaño de fuente reducido */
+    }
+
+    .confirmation-container h2 {
+        font-size: 1.2em; /* Tamaño de fuente ajustado */
+    }
+
+    .confirmation-container button {
+        padding: 8px 16px; /* Ajuste en el padding del botón */
+        font-size: 0.9em;
+    }
+
+    .confirmation-container input,
+    .confirmation-container select {
+        font-size: 0.9em;
+    }
+}

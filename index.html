@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda E & B</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Icon.png">
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>Cuenta Regresiva</h1>
+        <div class="countdown">
+            <div class="box">
+                <p id="days"></p>
+                <span>Días</span>
+            </div>
+            <div class="box">
+                <p id="hours"></p>
+                <span>Horas</span>
+            </div>
+            <div class="box">
+                <p id="minutes"></p>
+                <span>Minutos</span>
+            </div>
+            <div class="box">
+                <p id="seconds"></p>
+                <span>Segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirmation-container">
+        <h2>Confirmación de Asistencia</h2>
+        <form id="confirmacion-form">
+            <label for="invitado">Nombre:</label>
+            <input type="text" id="invitado" name="invitado" required>
+
+            <label for="confirmacion">¿Asistirás a la boda?</label>
+            <select id="confirmacion" name="confirmacion" required>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+            </select>
+
+            <button type="submit">Confirmar</button>
+        </form>
+        <p id="response-message"></p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    document.getElementById('confirmacion-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = {
+        nombre: document.getElementById('invitado').value,
+        confirmacion: document.getElementById('confirmacion').value
+    };
+
+    fetch('https://script.google.com/macros/s/AKfycbx3APJGKSsKrdhwceDQ4pBzhkWH4tf5aACNDfq4WsSrewTMiAMSYT3Lk3DS-Gp_g9hD/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById('response-message').textContent = data;
+    })
+    .catch(error => {
+        console.error('Error:', error); // Muestra el error en la consola
+        document.getElementById('response-message').textContent = 'Ocurrió un error. Inténtalo de nuevo.';
+    });
+});
+    </script>
+</body>
+</html>
